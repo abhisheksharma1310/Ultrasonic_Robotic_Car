@@ -1,4 +1,4 @@
-//2WD obstacle avoiding robot using Arduino
+//Obstacle avoiding robot using Arduino
 #include <Servo.h>        // Include Servo Library
 #include <NewPing.h>      // Include Newping Library
 
