@@ -1,4 +1,4 @@
-//Obstacle avoiding robot using Arduino
+//Codes for Self Controlled Robotic Car using Arduino
 #include <Servo.h>        // Include Servo Library
 #include <NewPing.h>      // Include Newping Library
 
