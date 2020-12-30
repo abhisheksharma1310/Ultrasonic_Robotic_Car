@@ -11,8 +11,8 @@ const int LEDext = 1;
 const int Buzzer = 0;
 
 
-#define TRIGGER_PIN  A1  // Arduino pin tied to trigger pin on the ultrasonic sensor.
-#define ECHO_PIN     A2  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define TRIGGER_PIN  A1  // Arduino pin to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     A2  // Arduino pin to echo pin on the ultrasonic sensor.
 #define MAX_DISTANCE 250 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 250cm.
 
 Servo servo_motor;  // Servo's name
@@ -40,72 +40,72 @@ void setup()
 
 void loop() 
 {  
-  int distanceRight = 0;
-  int distanceLeft = 0;
+  int distanceRight = 0;  //Initialize right side distance                                              
+  int distanceLeft = 0;   //Initialize left side distance
   delay(50);
 
-  if (distance <= 30)
+  if (distance <= 30)   //If distance of obstacle less than 30 cm from robot 
   {
-    moveStop();
-    digitalWrite(LEDext, HIGH);
-    digitalWrite(Buzzer, HIGH);
-    delay(300);
-    moveBackward();
+    Stop();   //call stop function to stop the robot
+    digitalWrite(LEDext, HIGH);   //Turn led ON
+    digitalWrite(Buzzer, HIGH);   //Turn Buzzer ON
+    delay(300);   //wait for 300ms
+    moveBackward();   //call moveBackward function to move robot in backward direction
     
-    delay(400);
-    moveStop();
+    delay(400);   //wait for 400ms
+    Stop();   //call stop function to stop the robot
     
-    delay(300);
-    distanceRight = lookRight();
+    delay(300);   //wait for 300ms
+    distanceRight = lookRight();    //call lookRight function to save distance in distanceRight variable
     
-    delay(300);
-    distanceLeft = lookLeft();
+    delay(300);   //wait for 300ms
+    distanceLeft = lookLeft();    //call lookLeft function to save distance in distanceLeft variable
     
-    delay(300);
+    delay(300);   //wait for 300ms
 
-    if (distanceRight >= distanceLeft)
+    if (distanceRight >= distanceLeft)    //If distance of right greater or equall to distance of left
     {
-      turnRight();
-      delay(300);
-      moveStop();
+      turnRight();    //call function to turn right robot
+      delay(300);   //wait for 300ms
+      Stop();   //call stop function to stop robot
     }
-    else
+    else //else
     {
-      turnLeft();
-      delay(300);
-      moveStop();
+      turnLeft();   //call function to turn left robot
+      delay(300);   //wait for 300ms
+      Stop();   //call stop function to stop robot
     }
   
   }
-  else
+  else    //else
   {
-    moveForward(); 
+    moveForward();    //call moveForward function to move robot in forward direction 
   }
 
-    distance = readPing();
+    distance = readPing();    //call readPing function to calculate Distance
 }
 
-int lookRight()     // Look Right Function for Servo Motor
+int lookRight()     // lookRight Function for Servo Motor
 {  
-  servo_motor.write(0);
-  delay(500);
-  int distance = readPing();
-  delay(100);
-  servo_motor.write(90);
-  return distance;
+  servo_motor.write(0);   //make servo position at 0 degree
+  delay(500);   //wait for 500ms
+  int distance = readPing();    //read distance
+  delay(100);   //wait for 100ms
+  servo_motor.write(90);    //make servo position 90 degree
+  return distance;    //return distance whenever lookRight function is called
 }
 
-int lookLeft()      // Look Left Function for Servo Motor 
+int lookLeft()      // lookLeft Function for Servo Motor 
 {
-  servo_motor.write(180);
-  delay(500);
-  int distance = readPing();
-  delay(100);
-  servo_motor.write(90);
-  return distance;
+  servo_motor.write(180);   //make servo position at 0 degree
+  delay(500);   //wait for 500ms
+  int distance = readPing();    //read distance
+  delay(100);   //wait for 100ms
+  servo_motor.write(90);    //make servo position 90 degree
+  return distance;    //return distance whenever lookLeft function is called
 }
 
-int readPing()      // Read Ping Function for Ultrasonic Sensor.
+int readPing()      // readPing Function for Ultrasonic Sensor.
 {
   delay(100);                 // Wait 100ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
   int cm = sonar.ping_cm();   //Send ping, get ping distance in centimeters (cm).
@@ -113,10 +113,10 @@ int readPing()      // Read Ping Function for Ultrasonic Sensor.
   {
     cm=250;
   }
-  return cm;
+  return cm;    //return distance whenever readPing function is called
 }
 
-void moveStop()       // Move Stop Function for Motor Driver.
+void Stop()       // Stop Function for Motor Driver.
 {
   digitalWrite(RightMotorForward, LOW);
   digitalWrite(RightMotorBackward, LOW);
