@@ -36,12 +36,6 @@ void setup()
   delay(2000);              // Wait for 2s.
   distance = readPing();    // Get Ping Distance.
   delay(100);               // Wait for 100ms.
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
 }
 
 void loop() 
