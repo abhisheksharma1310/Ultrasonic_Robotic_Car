@@ -2,7 +2,7 @@
 #include <Servo.h>        // Include Servo Library
 #include <NewPing.h>      // Include Newping Library
 
-// L298N Control Pins
+// L293d Control Pins
 const int LeftMotorForward = 4;
 const int LeftMotorBackward = 5;
 const int RightMotorForward = 6;
@@ -23,7 +23,7 @@ int distance = 50;
 
 void setup()
 {
-  // Set L298N Control Pins as Output
+  // Set L293d Control Pins as Output
   pinMode(RightMotorForward, OUTPUT);
   pinMode(LeftMotorForward, OUTPUT);
   pinMode(LeftMotorBackward, OUTPUT);
